@@ -1,5 +1,6 @@
 package com.glutenfreesoftware.shareable_shopping;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,30 +31,34 @@ public class MainActivity extends AppCompatActivity {
     /*
     Registers an user to database, does not login.
      */
-    private void registerUser(){
+    public void registerUser(){
         EditText username = (EditText) findViewById(R.id.username_unregistered_user);
         String usernameString = username.getText().toString();
-
         EditText password = (EditText) findViewById(R.id.password_unregistered_user);
-        String passwordString = username.getText().toString();
-
+        String passwordString = password.getText().toString();
         EditText email = (EditText) findViewById(R.id.email_unregistered_user);
-        String emailString = username.getText().toString();
-
+        String emailString = email.getText().toString();
         EditText name = (EditText) findViewById(R.id.name_unregistered_user);
-        String nameString = username.getText().toString();
+        String nameString = name.getText().toString();
 
     }
     /*
     Checks if the user exists. If user exists, logs in and starts a new intent.
      */
-    private void loginUser(String userName, String password){
+    public void loginUser(View v){
+
+        EditText username = (EditText) findViewById(R.id.username_registered_user);
+        String usernameString = username.getText().toString();
+        EditText password = (EditText) findViewById(R.id.password_registered_user);
+        String passwordString = password.getText().toString();
 
         boolean userExists = true;  // set to true for testing purposes
 
 
         if (userExists == true){
-            
+            startActivity(new Intent(MainActivity.this, Landing_Activity.class));
+        }   else    {
+            //Do nothing
         }
 
 
