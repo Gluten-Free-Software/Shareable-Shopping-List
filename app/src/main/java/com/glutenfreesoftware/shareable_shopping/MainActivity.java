@@ -2,6 +2,8 @@ package com.glutenfreesoftware.shareable_shopping;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         checkLogin(v,usernameString,passwordString);
     }
 
+
     public void checkLogin(View view, String usernameInput, String passwordInput){
 
         final String username = usernameInput;
@@ -93,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }
-                    }
-                }).execute(new URL("http://192.168.1.43:8080/ChatApplicationGit/api/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
+                    }//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                }).execute(new URL("http://158.38.195.109:8080/Shareable-Shopping-List-REST/api/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
