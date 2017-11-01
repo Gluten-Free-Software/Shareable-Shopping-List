@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button registerUser;
@@ -58,27 +62,43 @@ public class MainActivity extends AppCompatActivity {
     Checks if the user exists. If user exists, logs in and starts a new intent.
      */
     public void loginUser(View v){
-
         EditText username = (EditText) findViewById(R.id.username_registered_user);
         String usernameString = username.getText().toString();
         EditText password = (EditText) findViewById(R.id.password_registered_user);
         String passwordString = password.getText().toString();
 
-        boolean userExists = true;  // set to true for testing purposes
+        checkLogin(v,usernameString,passwordString);
+    }
 
+    public void checkLogin(View view, String usernameInput, String passwordInput){
 
-        if (userExists == true){
-            startActivity(new Intent(MainActivity.this, Landing_Activity.class));
-        }   else    {
-            Context context = getApplicationContext();
-            CharSequence text = "Wrong username or password";
-            int duration = Toast.LENGTH_SHORT;
+        final String username = usernameInput;
+        final String password = passwordInput;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
+        if(!username.equals("") && !password.equals("")){
+            //System.out.println("It works! OMG");
+            try {
+                new LoginCheck(new LoginCheck.OnPostExecute() {
+                    @Override
+                    public void onPostExecute(List<Users> users) {
+                        if(users.isEmpty()){
+                            //System.out.println("No match in the database");
+                        }
+                        for(Users u : users) {
+                            System.out.println("User: " + u.getUsername());
+                            if(username.equals(u.getUsername())){
+                                //System.out.println("We have a match in the database");
+                                Intent intent = new Intent(MainActivity.this, Landing_Activity.class);
+                                intent.putExtra("username", u.getUsername());
+                                startActivity(intent);
+                            }
+                        }
+                    }
+                }).execute(new URL("http://192.168.1.43:8080/ChatApplicationGit/api/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
-
-
     }
 
 }

@@ -36,9 +36,8 @@ public class ListRecyclerAdapter extends RecyclerView.Adapter<ListRecyclerAdapte
                                                    int viewType) {
         // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
+                .inflate(R.layout.list_text_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        ...
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -59,4 +58,4 @@ public class ListRecyclerAdapter extends RecyclerView.Adapter<ListRecyclerAdapte
     }
 }
 
-}
+

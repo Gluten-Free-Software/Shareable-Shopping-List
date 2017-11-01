@@ -62,7 +62,7 @@ public class Landing_Activity extends AppCompatActivity
 
         // specify an adapter (see also next example)
         Adapter = new ListRecyclerAdapter(myDataset);
-        RecyclerView.setAdapter(Adapter);
+        //RecyclerView.setAdapter(Adapter);
     }
 
     @Override
