@@ -40,8 +40,18 @@ public class MainActivity extends AppCompatActivity {
         String emailString = email.getText().toString();
         EditText name = (EditText) findViewById(R.id.name_unregistered_user);
         String nameString = name.getText().toString();
+        //Put details on server
+        registerToServer();
 
     }
+
+    /**
+     * Regsisters to server
+     */
+    private void registerToServer() {
+
+    }
+
     /*
     Checks if the user exists. If user exists, logs in and starts a new intent.
      */
