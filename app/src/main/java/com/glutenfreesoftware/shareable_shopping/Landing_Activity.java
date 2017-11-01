@@ -1,8 +1,11 @@
 package com.glutenfreesoftware.shareable_shopping;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Landing_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView RecyclerView;
+    private RecyclerView.Adapter Adapter;
+    private RecyclerView.LayoutManager LayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +35,7 @@ public class Landing_Activity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addList();
             }
         });
 
@@ -40,6 +47,22 @@ public class Landing_Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        RecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        RecyclerView.setHasFixedSize(true);
+
+        // use a linear layout manager
+        LayoutManager = new LinearLayoutManager(this);
+        RecyclerView.setLayoutManager(LayoutManager);
+
+        String[] myDataset = {""};
+
+        // specify an adapter (see also next example)
+        Adapter = new ListRecyclerAdapter(myDataset);
+        RecyclerView.setAdapter(Adapter);
     }
 
     @Override
@@ -67,11 +90,41 @@ public class Landing_Activity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.update) {
+            updateList();
+        }   else if (id == R.id.search) {
+            searchList();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateList() {
+
+        Context context = getApplicationContext();
+        CharSequence text = "List updated";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+    }
+
+    private void searchList() {
+
+    }
+
+    private void addList() {
+
+        updateList();
+
+    }
+
+    private String[] getLists(){
+        String[] response = {""};
+
+
+        return response;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -80,17 +133,13 @@ public class Landing_Activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.account) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.shared_with_me) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.settings) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.friends) {
 
         }
 
