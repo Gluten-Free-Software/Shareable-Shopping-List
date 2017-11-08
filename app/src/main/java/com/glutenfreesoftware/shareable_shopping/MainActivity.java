@@ -19,12 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button registerUser;
     private Button loginUser;
-    private EditText registeredUsernameField;
-    private EditText registeredPasswordField;
-    private EditText unregisteredUsernameField;
-    private EditText unregisteredPasswordField;
-    private EditText unregisteredEmailField;
-    private EditText unregisteredNameField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,31 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         loginUser = (Button) findViewById(R.id.login_existing_user);
-        registerUser = (Button) findViewById(R.id.register_unregistered_user);
+        registerUser = (Button) findViewById(R.id.register_user);
 
-    }
 
-    /*
-    Registers an user to database, does not login.
-     */
-    public void registerUser(){
-        EditText username = (EditText) findViewById(R.id.username_unregistered_user);
-        String usernameString = username.getText().toString();
-        EditText password = (EditText) findViewById(R.id.password_unregistered_user);
-        String passwordString = password.getText().toString();
-        EditText email = (EditText) findViewById(R.id.email_unregistered_user);
-        String emailString = email.getText().toString();
-        EditText name = (EditText) findViewById(R.id.name_unregistered_user);
-        String nameString = name.getText().toString();
-        //Put details on server
-        registerToServer();
-
-    }
-
-    /**
-     * Regsisters to server
-     */
-    private void registerToServer() {
 
     }
 
@@ -78,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         final String username = usernameInput;
         final String password = passwordInput;
 
-        if(!username.equals("") && !password.equals("")){
+        /*if(!username.equals("") && !password.equals("")){
             //System.out.println("It works! OMG");
             try {
                 new LoginCheck(new LoginCheck.OnPostExecute() {
@@ -101,7 +73,17 @@ public class MainActivity extends AppCompatActivity {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
+        Intent intent = new Intent(MainActivity.this, Landing_Activity.class);
+        intent.putExtra("username", usernameInput);
+        startActivity(intent);
+    }
+
+
+
+    public void openRegistrationActivity(View v){
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
 
 }
