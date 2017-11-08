@@ -1,18 +1,19 @@
 package com.glutenfreesoftware.shareable_shopping;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.glutenfreesoftware.shareable_shopping.dialog.LoginFailedDialogFragment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,34 +51,35 @@ public class MainActivity extends AppCompatActivity {
         final String username = usernameInput;
         final String password = passwordInput;
 
-        /*if(!username.equals("") && !password.equals("")){
+        if(!username.equals("") && !password.equals("")){
             //System.out.println("It works! OMG");
             try {
                 new LoginCheck(new LoginCheck.OnPostExecute() {
                     @Override
                     public void onPostExecute(List<Users> users) {
                         if(users.isEmpty()){
-                            //System.out.println("No match in the database");
+                            Log.d("asdf", "No match in the database");
+                            Snackbar loginFailed = Snackbar.make(findViewById(R.id
+                                    .login_existing_user), R.string.login_failed, Snackbar
+                                    .LENGTH_INDEFINITE);
+                            loginFailed.show();
                         }
                         for(Users u : users) {
-                            System.out.println("User: " + u.getUsername());
+                            Log.d("asdf", "We have a match in the database");
                             if(username.equals(u.getUsername())){
-                                //System.out.println("We have a match in the database");
-                                Intent intent = new Intent(MainActivity.this, Landing_Activity.class);
-                                intent.putExtra("username", u.getUsername());
-                                startActivity(intent);
+                                Log.d("asdf", "User: " + u.getUsername());
+                                Intent loginIntent = new Intent(MainActivity.this, Landing_Activity.class)
+                                        .putExtra("username", u.getUsername());
+                                startActivity(loginIntent);
                             }
                         }
-                    }//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                    } //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                 }).execute(new URL("http://158.38.72.156:8080/Shareable-Shopping-List-REST/api" +
                         "/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-        }*/
-        Intent intent = new Intent(MainActivity.this, Landing_Activity.class);
-        intent.putExtra("username", usernameInput);
-        startActivity(intent);
+        }
     }
 
 
