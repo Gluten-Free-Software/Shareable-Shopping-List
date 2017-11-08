@@ -1,5 +1,7 @@
 package com.glutenfreesoftware.shareable_shopping;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -132,15 +134,32 @@ public class Landing_Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment = null;
 
-        if (id == R.id.account) {
+
+        if (id == R.id.rooms) {
             // Handle the camera action
+            fragment = new Rooms();
+        } else if (id == R.id.shopping_lists) {
+            fragment = new ShoppingLists();
+        } else if (id == R.id.stored_lists) {
+            fragment = new StoredLists();
         } else if (id == R.id.shared_with_me) {
-
+            fragment = new SharedLists();
+        } else if (id == R.id.gps) {
+            fragment = new GPS();
         } else if (id == R.id.settings) {
+            //Egen settings activity
+        } else if (id == R.id.logout) {
+            //Logg ut
+        } else if (id == R.id.home) {
+            fragment = new Home();
+        }
 
-        } else if (id == R.id.friends) {
-
+        if (fragment != null){
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+             transaction.replace(R.id.content_main, fragment);
+             transaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
