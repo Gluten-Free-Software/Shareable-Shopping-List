@@ -97,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                }).execute(new URL("http://158.38.195.109:8080/Shareable-Shopping-List-REST/api/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
+                }).execute(new URL("http://158.38.72.156:8080/Shareable-Shopping-List-REST/api" +
+                        "/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
