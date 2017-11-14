@@ -50,21 +50,6 @@ public class Landing_Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        RecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        RecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        LayoutManager = new LinearLayoutManager(this);
-        RecyclerView.setLayoutManager(LayoutManager);
-
-        String[] myDataset = {""};
-
-        // specify an adapter (see also next example)
-        Adapter = new ListRecyclerAdapter(myDataset);
-        //RecyclerView.setAdapter(Adapter);
     }
 
     @Override
