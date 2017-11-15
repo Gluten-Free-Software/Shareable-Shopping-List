@@ -21,10 +21,17 @@ public class StoredLists extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private String username = "";
+    private String password = "";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
+
+        username = getArguments().getString("username");
+        password = getArguments().getString("password");
+        System.out.println(username);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
