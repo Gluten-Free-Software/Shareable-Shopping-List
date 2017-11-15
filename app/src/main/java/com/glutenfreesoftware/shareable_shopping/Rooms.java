@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class Rooms extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private String username = "Kristian";
 
     @Nullable
     @Override
@@ -37,6 +40,28 @@ public class Rooms extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         List<String> input = new ArrayList<>();
+        try{
+            new getRooms(new getRooms.OnPostExecute() {
+                @Override
+                public void onPostExecute(List<RoomObj> rooms) {
+                    if(rooms.isEmpty()){
+                        System.out.println("rooms is empty");
+                    }
+                    for(RoomObj r: rooms){
+                        System.out.println(r.getRoomName() + " " + r.getRoomOwner());
+                    }
+
+
+                }
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms"));
+
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         for (int i = 0; i < 100; i++) {
             input.add("Test" + i);
         }// define an adapter
