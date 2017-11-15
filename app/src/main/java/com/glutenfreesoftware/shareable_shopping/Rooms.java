@@ -33,20 +33,18 @@ public class Rooms extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_rooms, container, false);
 
-
         username = getArguments().getString("username");
         //password = getArguments().getString("password");
         System.out.println(username);
 
         Button deleteRoomBtn = (Button) view.findViewById(R.id.add_room);
         deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
-                                             @Override
-                                             public void onClick(View v){
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("Added");
-                                             }
-        }
-        );
+             @Override
+             public void onClick(View v){
+                 //Insert code for adding to server from server
+                 System.out.println("Added");
+             }
+        });
 
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
