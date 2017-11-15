@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,6 +37,16 @@ public class Rooms extends Fragment {
         username = getArguments().getString("username");
         //password = getArguments().getString("password");
         System.out.println(username);
+
+        Button deleteRoomBtn = (Button) view.findViewById(R.id.add_room);
+        deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
+                                             @Override
+                                             public void onClick(View v){
+                                                 //Insert code for adding to server from server
+                                                 System.out.println("Added");
+                                             }
+        }
+        );
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
