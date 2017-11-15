@@ -24,6 +24,7 @@ public class Rooms extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private String username = "";
 
     private String password = "";
 
@@ -83,4 +84,9 @@ public class Rooms extends Fragment {
 
         getActivity().setTitle("Rooms");
     }
+
+    public void deleteRoom(View view){
+
+    }
+
 }
