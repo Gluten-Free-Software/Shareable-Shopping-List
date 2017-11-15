@@ -49,7 +49,7 @@ public class LoginCheck extends AsyncTask<URL,Integer,List<Users>> {
                 jr.beginObject();
                 while (jr.hasNext()) {
                     switch (jr.nextName()) {
-                        case "Username":
+                        case "username":
                             username = jr.nextString();
                             Log.d("LoginCheck", "Username received: " + username);
                             break;
