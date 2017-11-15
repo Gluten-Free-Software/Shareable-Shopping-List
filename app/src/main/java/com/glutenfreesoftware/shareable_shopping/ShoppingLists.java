@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,16 +24,17 @@ public class ShoppingLists extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
 
     private String username = "";
-    private String password = "";
+    private String room = "";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
 
+
         username = getArguments().getString("username");
-        password = getArguments().getString("password");
-        System.out.println(username);
+        room = getArguments().getString("room");
+        System.out.println("Shopping list: " + username + " " + room);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
@@ -43,12 +45,36 @@ public class ShoppingLists extends Fragment {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new MyAdapter(input);
-        recyclerView.setAdapter(mAdapter);
+
+        final List<ListObj> input = new ArrayList<>();
+        try{
+            new getLists(new getLists.OnPostExecute() {
+                @Override
+                public void onPostExecute(List<ListObj> lists) {
+                    if(lists.isEmpty()){
+                        System.out.println("list is empty");
+                    }
+                    for(ListObj l: lists){
+                        System.out.println(l.getListRoom() + " " + l.getListName() + " " + l.getListOwner());
+                        input.add(l);
+                    }
+                    mAdapter = new ListAdapter("Kristian", input);
+                    recyclerView.setAdapter(mAdapter);
+                }
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        //"http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom=Oppskrifter&listOwner=Kristian"
+        //
+        //http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom=Oppskrifter&listOwner=Kristian
+
+        //List<String> input = new ArrayList<>();
+        //for (int i = 0; i < 100; i++) {
+        //    input.add("Test" + i);
+        //}// define an adapter
+        //mAdapter = new MyAdapter(input);
+        //recyclerView.setAdapter(mAdapter);
 
 
 

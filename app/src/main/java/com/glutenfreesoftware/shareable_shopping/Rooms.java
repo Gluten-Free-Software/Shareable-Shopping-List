@@ -23,7 +23,6 @@ public class Rooms extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private String username = "Kristian";
 
     private String username = "";
     private String password = "";
@@ -34,7 +33,7 @@ public class Rooms extends Fragment {
         View view = inflater.inflate(R.layout.layout_rooms, container, false);
 
         username = getArguments().getString("username");
-        password = getArguments().getString("password");
+        //password = getArguments().getString("password");
         System.out.println(username);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
@@ -46,7 +45,7 @@ public class Rooms extends Fragment {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        List<String> input = new ArrayList<>();
+        final List<RoomObj> input = new ArrayList<>();
         try{
             new getRooms(new getRooms.OnPostExecute() {
                 @Override
@@ -56,24 +55,22 @@ public class Rooms extends Fragment {
                     }
                     for(RoomObj r: rooms){
                         System.out.println(r.getRoomName() + " " + r.getRoomOwner());
+                        input.add(r);
                     }
-
-
+                    mAdapter = new RoomAdapter("Kristian", input);
+                    recyclerView.setAdapter(mAdapter);
                 }
             }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms"));
-
-
-
         } catch (Exception e){
             e.printStackTrace();
         }
 
 
-        for (int i = 0; i < 100; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new MyAdapter(input);
-        recyclerView.setAdapter(mAdapter);
+        //for (int i = 0; i < 100; i++) {
+        //    input.add("Test" + i);
+        //}// define an adapter
+        //mAdapter = new MyAdapter(input);
+        //recyclerView.setAdapter(mAdapter);
 
 
 
