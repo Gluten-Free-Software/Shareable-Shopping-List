@@ -6,6 +6,14 @@
     android:orientation="vertical">
 
 
+    <Button
+        android:id="@+id/delete_room"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="deleteRoom"
+        android:text="Delete room" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rooms_recyclerview"
         android:scrollbars="vertical"

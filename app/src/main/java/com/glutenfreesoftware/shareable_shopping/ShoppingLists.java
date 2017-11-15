@@ -1,5 +1,6 @@
 package com.glutenfreesoftware.shareable_shopping;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +34,15 @@ public class ShoppingLists extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
 
+        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
+        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //Insert code for deleting from server
+                System.out.println("Deleted");
+            }
+                                         }
+        );
 
         username = getArguments().getString("username");
         room = getArguments().getString("room");
@@ -87,4 +99,5 @@ public class ShoppingLists extends Fragment {
 
         getActivity().setTitle("Shopping Lists");
     }
+
 }
