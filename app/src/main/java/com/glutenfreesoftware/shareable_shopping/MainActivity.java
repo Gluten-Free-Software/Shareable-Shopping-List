@@ -58,16 +58,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onPostExecute(List<Users> users) {
                         if(users.isEmpty()){
-                            Log.d("asdf", "No match in the database");
+                            Log.d("LoginCheck", "No match in the database");
                             Snackbar loginFailed = Snackbar.make(findViewById(R.id
                                     .login_existing_user), R.string.login_failed, Snackbar
-                                    .LENGTH_INDEFINITE);
+                                    .LENGTH_LONG);
                             loginFailed.show();
                         }
                         for(Users u : users) {
-                            Log.d("asdf", "We have a match in the database");
+                            Log.d("LoginCheck", "We have a match in the database");
                             if(username.equals(u.getUsername())){
-                                Log.d("asdf", "User: " + u.getUsername());
+                                Log.d("LoginCheck", "User: " + u.getUsername());
                                 Intent loginIntent = new Intent(MainActivity.this, Landing_Activity.class)
                                         .putExtra("username", u.getUsername());
                                 startActivity(loginIntent);
@@ -75,7 +75,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                 }).execute(new URL("http://158.38.72.156:8080/Shareable-Shopping-List-REST/api" +
-                        "/users/getUser?username=" + username)); //(new url.("http://158.38.92.103:8080/pstore/api/store/images/"));
+                        "/users/getUser?username=" + username + "&password=" + password)); //(new
+                // url.
+                // ("http://158.38.92.103:8080/pstore/api/store/images/"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }

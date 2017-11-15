@@ -29,6 +29,7 @@ public class LoginCheck extends AsyncTask<URL,Integer,List<Users>> {
     @Override
     protected List<Users> doInBackground(URL... urls) {
         if(urls.length < 1) return Collections.EMPTY_LIST;
+        Log.d("LoginCheck", "URL received");
 
 
         //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -37,6 +38,7 @@ public class LoginCheck extends AsyncTask<URL,Integer,List<Users>> {
         HttpURLConnection con = null;
         try {
             con = (HttpURLConnection)urls[0].openConnection();
+            Log.d("LoginCheck", "connection established");
             JsonReader jr = new JsonReader(new InputStreamReader(con.getInputStream()));
             jr.beginArray();
             while (jr.hasNext()) {
@@ -47,8 +49,9 @@ public class LoginCheck extends AsyncTask<URL,Integer,List<Users>> {
                 jr.beginObject();
                 while (jr.hasNext()) {
                     switch (jr.nextName()) {
-                        case "username":
+                        case "Username":
                             username = jr.nextString();
+                            Log.d("LoginCheck", "Username received: " + username);
                             break;
                         default:
                             jr.skipValue();
@@ -59,7 +62,7 @@ public class LoginCheck extends AsyncTask<URL,Integer,List<Users>> {
             }
             jr.endArray();
         } catch (IOException e) {
-            Log.e("LoadThumb","Failed to load photos from " + urls[0],e);
+            Log.e("LoginCheck","Failed to verify login" + urls[0],e);
         }
 
 
