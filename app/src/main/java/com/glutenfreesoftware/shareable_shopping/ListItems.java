@@ -1,5 +1,9 @@
 package com.glutenfreesoftware.shareable_shopping;
 
+/**
+ * Created by Kristian on 15.11.2017.
+ */
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,7 +21,7 @@ import java.util.List;
  * Created by oebar on 08.11.2017.
  */
 
-public class ShoppingLists extends Fragment {
+public class ListItems extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -33,8 +37,8 @@ public class ShoppingLists extends Fragment {
 
 
         username = getArguments().getString("username");
-        room = getArguments().getString("room");
-        System.out.println("Shopping list: " + username + " " + room);
+        room = getArguments().getString("list");
+        System.out.println("ListItem: " + username + " " + room);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
@@ -46,22 +50,22 @@ public class ShoppingLists extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        final List<ListObj> input = new ArrayList<>();
+        final List<ListItemObj> input = new ArrayList<>();
         try{
-            new getLists(new getLists.OnPostExecute() {
+            new getListItems(new getListItems.OnPostExecute() {
                 @Override
-                public void onPostExecute(List<ListObj> lists) {
-                    if(lists.isEmpty()){
-                        System.out.println("list is empty...hello?");
+                public void onPostExecute(List<ListItemObj> listItems) {
+                    if(listItems.isEmpty()){
+                        System.out.println("listItems is empty");
                     }
-                    for(ListObj l: lists){
-                        System.out.println(l.getListRoom() + " " + l.getListName() + " " + l.getListOwner());
+                    for(ListItemObj l: listItems){
+                        System.out.println(l.getListItemList() + " " + l.getListItemName() + " " + l.getListItemOwner());
                         input.add(l);
                     }
-                    mAdapter = new ListAdapter("Kristian", input);
+                    mAdapter = new ListItemAdapter("Kristian", input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getListItems?listItemList=Taco&listItemOwner=Kristian"));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -85,6 +89,6 @@ public class ShoppingLists extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Shopping Lists");
+        getActivity().setTitle("List Items");
     }
 }

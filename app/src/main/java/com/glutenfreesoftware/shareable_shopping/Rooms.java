@@ -24,13 +24,14 @@ public class Rooms extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-
+    private String username = "";
     private String password = "";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_rooms, container, false);
+
 
         username = getArguments().getString("username");
         //password = getArguments().getString("password");
