@@ -25,6 +25,8 @@ public class Landing_Activity extends AppCompatActivity
     private RecyclerView RecyclerView;
     private RecyclerView.Adapter Adapter;
     private RecyclerView.LayoutManager LayoutManager;
+    private String username = "TEST";
+    private String password = "TEST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +153,12 @@ public class Landing_Activity extends AppCompatActivity
         }
 
         if (fragment != null){
+
+            Bundle bundle = new Bundle();
+            bundle.putString("username", this.username);
+            bundle.putString("password", this.password);
+            fragment.setArguments(bundle);
+
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
              transaction.replace(R.id.content_main, fragment);
              transaction.commit();

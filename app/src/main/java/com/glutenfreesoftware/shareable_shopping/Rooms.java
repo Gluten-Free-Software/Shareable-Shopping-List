@@ -25,10 +25,17 @@ public class Rooms extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private String username = "Kristian";
 
+    private String username = "";
+    private String password = "";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_rooms, container, false);
+
+        username = getArguments().getString("username");
+        password = getArguments().getString("password");
+        System.out.println(username);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
