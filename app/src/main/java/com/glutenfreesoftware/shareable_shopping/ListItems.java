@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,8 +34,17 @@ public class ListItems extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
+        View view = inflater.inflate(R.layout.layout_list_items, container, false);
 
+        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_list);
+        deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
+                                              @Override
+                                              public void onClick(View v){
+                                                  //Insert code for adding to server from server
+                                                  System.out.println("List deleted");
+                                              }
+                                          }
+        );
 
         username = getArguments().getString("username");
         room = getArguments().getString("list");
