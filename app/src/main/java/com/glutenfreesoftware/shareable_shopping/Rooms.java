@@ -48,6 +48,7 @@ public class Rooms extends Fragment {
         }
         );
 
+
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
         // improve performance if you know that changes

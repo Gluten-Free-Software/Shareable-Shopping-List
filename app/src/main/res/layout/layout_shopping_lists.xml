@@ -7,6 +7,12 @@
 
 
     <Button
+        android:id="@+id/share_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share room" />
+
+    <Button
         android:id="@+id/delete_room"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"

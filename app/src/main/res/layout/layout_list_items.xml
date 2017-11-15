@@ -7,6 +7,12 @@
 
 
     <Button
+        android:id="@+id/share_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share list" />
+
+    <Button
         android:id="@+id/delete_list"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"

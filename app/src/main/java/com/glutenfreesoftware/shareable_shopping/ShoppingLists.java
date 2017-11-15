@@ -36,12 +36,21 @@ public class ShoppingLists extends Fragment {
 
         Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
         deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //Insert code for deleting from server
-                System.out.println("Deleted");
+                @Override
+                public void onClick(View v){
+                    //Insert code for deleting from server
+                    System.out.println("Deleted");
+                }
             }
-                                         }
+        );
+        Button shareRoomBtn = (Button) view.findViewById(R.id.share_room);
+        shareRoomBtn.setOnClickListener( new View.OnClickListener(){
+                                              @Override
+                                              public void onClick(View v){
+                                                  //Insert code for adding to server from server
+                                                  System.out.println("Shared");
+                                              }
+                                          }
         );
 
         username = getArguments().getString("username");

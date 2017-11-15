@@ -45,6 +45,15 @@ public class ListItems extends Fragment {
                                               }
                                           }
         );
+        Button shareListBtn = (Button) view.findViewById(R.id.share_list);
+        shareListBtn.setOnClickListener( new View.OnClickListener(){
+                                              @Override
+                                              public void onClick(View v){
+                                                  //Insert code for adding to server from server
+                                                  System.out.println("Shared list");
+                                              }
+                                          }
+        );
 
         username = getArguments().getString("username");
         room = getArguments().getString("list");
