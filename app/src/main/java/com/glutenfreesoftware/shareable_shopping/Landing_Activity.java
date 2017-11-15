@@ -156,7 +156,7 @@ public class Landing_Activity extends AppCompatActivity
 
             Bundle bundle = new Bundle();
             bundle.putString("username", this.username);
-            bundle.putString("password", this.password);
+            //bundle.putString("password", this.password);
             fragment.setArguments(bundle);
 
             FragmentTransaction transaction = getFragmentManager().beginTransaction();

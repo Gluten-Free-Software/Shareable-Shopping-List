@@ -1,6 +1,9 @@
 package com.glutenfreesoftware.shareable_shopping;
 
-import android.app.Activity;
+/**
+ * Created by Kristian on 15.11.2017.
+ */
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.List;
  * Created by oebar on 08.11.2017.
  */
 
-public class ShoppingLists extends Fragment {
+public class ListItems extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -32,30 +34,30 @@ public class ShoppingLists extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
+        View view = inflater.inflate(R.layout.layout_list_items, container, false);
 
-        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
-        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    //Insert code for deleting from server
-                    System.out.println("Deleted");
-                }
-            }
-        );
-        Button shareRoomBtn = (Button) view.findViewById(R.id.share_room);
-        shareRoomBtn.setOnClickListener( new View.OnClickListener(){
+        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_list);
+        deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
                                               @Override
                                               public void onClick(View v){
                                                   //Insert code for adding to server from server
-                                                  System.out.println("Shared");
+                                                  System.out.println("List deleted");
+                                              }
+                                          }
+        );
+        Button shareListBtn = (Button) view.findViewById(R.id.share_list);
+        shareListBtn.setOnClickListener( new View.OnClickListener(){
+                                              @Override
+                                              public void onClick(View v){
+                                                  //Insert code for adding to server from server
+                                                  System.out.println("Shared list");
                                               }
                                           }
         );
 
         username = getArguments().getString("username");
-        room = getArguments().getString("room");
-        System.out.println("Shopping list: " + username + " " + room);
+        room = getArguments().getString("list");
+        System.out.println("ListItem: " + username + " " + room);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
         // use this setting to
@@ -67,22 +69,22 @@ public class ShoppingLists extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        final List<ListObj> input = new ArrayList<>();
+        final List<ListItemObj> input = new ArrayList<>();
         try{
-            new getLists(new getLists.OnPostExecute() {
+            new getListItems(new getListItems.OnPostExecute() {
                 @Override
-                public void onPostExecute(List<ListObj> lists) {
-                    if(lists.isEmpty()){
-                        System.out.println("list is empty...hello?");
+                public void onPostExecute(List<ListItemObj> listItems) {
+                    if(listItems.isEmpty()){
+                        System.out.println("listItems is empty");
                     }
-                    for(ListObj l: lists){
-                        System.out.println(l.getListRoom() + " " + l.getListName() + " " + l.getListOwner());
+                    for(ListItemObj l: listItems){
+                        System.out.println(l.getListItemList() + " " + l.getListItemName() + " " + l.getListItemOwner());
                         input.add(l);
                     }
-                    mAdapter = new ListAdapter("Kristian", input);
+                    mAdapter = new ListItemAdapter("Kristian", input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getListItems?listItemList=Taco&listItemOwner=Kristian"));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -106,7 +108,6 @@ public class ShoppingLists extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Shopping Lists");
+        getActivity().setTitle("List Items");
     }
-
 }
