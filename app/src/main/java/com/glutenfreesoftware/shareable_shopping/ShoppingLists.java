@@ -49,9 +49,6 @@ public class ShoppingLists extends Fragment {
         }// define an adapter
         mAdapter = new MyAdapter(input);
         recyclerView.setAdapter(mAdapter);
-
-
-
         return view;
     }
 

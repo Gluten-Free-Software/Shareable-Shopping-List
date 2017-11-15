@@ -25,7 +25,7 @@ public class Rooms extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private String username = "Kristian";
 
-    private String username = "";
+
     private String password = "";
 
     @Nullable
