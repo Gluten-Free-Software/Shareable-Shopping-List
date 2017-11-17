@@ -56,7 +56,6 @@ public class Landing_Activity extends AppCompatActivity
         Intent variables = getIntent();
         Bundle variableBundle = variables.getExtras();
         username = variableBundle.getString("username");
-        //System.out.println(username + " *****************!!!!!!!!*****************");
 
         // Set default:
         Fragment fragment = null;
@@ -69,14 +68,6 @@ public class Landing_Activity extends AppCompatActivity
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.content_main, fragment);
         transaction.commit();
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -152,11 +143,9 @@ public class Landing_Activity extends AppCompatActivity
         if (id == R.id.rooms) {
             // Handle the camera action
             fragment = new Rooms();
-        } else if (id == R.id.shopping_lists) {
+        } else if (id == R.id.shared_rooms) {
             fragment = new ShoppingLists();
-        } else if (id == R.id.stored_lists) {
-            fragment = new StoredLists();
-        } else if (id == R.id.shared_with_me) {
+        } else if (id == R.id.shared_lists) {
             fragment = new SharedLists();
         } else if (id == R.id.gps) {
             fragment = new GPS();
@@ -164,8 +153,6 @@ public class Landing_Activity extends AppCompatActivity
             //Egen settings activity
         } else if (id == R.id.logout) {
             //Logg ut
-        } else if (id == R.id.home) {
-            fragment = new Home();
         }
 
         if (fragment != null){
