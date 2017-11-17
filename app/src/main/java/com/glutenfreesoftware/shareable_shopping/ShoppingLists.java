@@ -72,7 +72,6 @@ public class ShoppingLists extends Fragment {
 
         });
         Button addListBtn = (Button) view.findViewById(R.id.add_list);
-
         addListBtn.setOnClickListener(new View.OnClickListener() {
 
             String addedList = "";
@@ -153,27 +152,6 @@ public class ShoppingLists extends Fragment {
             }
 
         });
-
-        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
-        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    //Insert code for deleting from server
-                    System.out.println("Deleted");
-                }
-            }
-        );
-
-        Button addListBtn = (Button) view.findViewById(R.id.add_list);
-        addListBtn.setOnClickListener( new View.OnClickListener(){
-                                             @Override
-                                             public void onClick(View v){
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("Added");
-                                             }
-                                         }
-        );
-
 
         username = getArguments().getString("username");
         room = getArguments().getString("room");

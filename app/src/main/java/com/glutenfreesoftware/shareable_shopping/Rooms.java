@@ -58,7 +58,7 @@ public class Rooms extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_rooms, container, false);
+        final View view = inflater.inflate(R.layout.layout_rooms, container, false);
 
         username = getArguments().getString("username");
         //password = getArguments().getString("password");
@@ -66,84 +66,74 @@ public class Rooms extends Fragment {
 
         Button deleteRoomBtn = (Button) view.findViewById(R.id.add_room);
         deleteRoomBtn.setOnClickListener(new View.OnClickListener() {
-
             String roomNamePosted = "";
 
             @Override
             public void onClick(final View v) {
-        Button addRoomBtn = (Button) view.findViewById(R.id.add_room);
-
-
-        addRoomBtn.setOnClickListener(new View.OnClickListener() {
-
-            String addedRoom = "";
-
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Add room");
-
-                // Set up the input
-                final EditText input = new EditText(getActivity());
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
-                // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                Button addRoomBtn = (Button) view.findViewById(R.id.add_room);
+                addRoomBtn.setOnClickListener(new View.OnClickListener() {
+                    String addedRoom = "";
 
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        roomNamePosted = input.getText().toString();
-                        sendMessage(v, roomNamePosted, username);
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
+                    public void onClick(final View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Add room");
+
+                        // Set up the input
+                        final EditText input = new EditText(getActivity());
+                        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
+                        builder.setView(input);
+                        // Set up the buttons
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
                             @Override
-                            public void run() {
-                                // Do something after 3s = 3000ms
-                                getRoomsMethod();
+                            public void onClick(DialogInterface dialog, int which) {
+                                roomNamePosted = input.getText().toString();
+                                sendMessage(v, roomNamePosted, username);
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Do something after 3s = 3000ms
+                                        getRoomsMethod();
+                                    }
+                                }, 3000);
+                                System.out.println("user:" + roomNamePosted);
+                                addedRoom = input.getText().toString();
+
+                                System.out.println(addedRoom);
                             }
-                        }, 3000);
-                        System.out.println("user:" + roomNamePosted);
-                        addedRoom = input.getText().toString();
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
 
-                        System.out.println(addedRoom);
+                        builder.show();
+
+                        //Insert code for adding to server from server
+
                     }
+
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-
-                //Insert code for adding to server from server
-
             }
-
         });
-        /*deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
-             @Override
-             public void onClick(View v){
-                 //Insert code for adding to server from server
-                 System.out.println("Added");
-             }
-        });*/
-
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
+                // use this setting to
+                // improve performance if you know that changes
+                // in content do not change the layout size
+                // of the RecyclerView
         recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
+                // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         getRoomsMethod();
-        /*final List<RoomObj> input = new ArrayList<>();
+        /*
+        final List<RoomObj> input = new ArrayList<>();
         try{
             new getRooms(new getRooms.OnPostExecute() {
                 @Override
@@ -165,16 +155,18 @@ public class Rooms extends Fragment {
         */
 
 
-        //for (int i = 0; i < 100; i++) {
-        //    input.add("Test" + i);
-        //}// define an adapter
-        //mAdapter = new MyAdapter(input);
-        //recyclerView.setAdapter(mAdapter);
+
+                //for (int i = 0; i < 100; i++) {
+                //    input.add("Test" + i);
+                //}// define an adapter
+                //mAdapter = new MyAdapter(input);
+                //recyclerView.setAdapter(mAdapter);
 
 
-
-        return view;
+         return view;
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -183,43 +175,43 @@ public class Rooms extends Fragment {
         getActivity().setTitle("Rooms");
     }
 
-    public void deleteRoom(View view){
+    public void deleteRoom(View view) {
 
     }
 
-    public void getRoomsMethod(){
+    public void getRoomsMethod() {
         System.out.println("getRoomsMethod");
 
         final List<RoomObj> input = new ArrayList<>();
-        try{
+        try {
             new getRooms(new getRooms.OnPostExecute() {
                 @Override
                 public void onPostExecute(List<RoomObj> rooms) {
-                    if(rooms.isEmpty()){
+                    if (rooms.isEmpty()) {
                         System.out.println("rooms is empty");
                     }
-                    for(RoomObj r: rooms){
+                    for (RoomObj r : rooms) {
                         //System.out.println(r.getRoomName() + " " + r.getRoomOwner());
                         input.add(r);
                     }
                     mAdapter = new RoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner="+username));
-        } catch (Exception e){
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner=" + username));
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void sendMessage(View v, String roomName, String roomOwner){
+    public void sendMessage(View v, String roomName, String roomOwner) {
         //String massageToSend = "test";
         //final String message = massageToSend.getText().toString();
         //massageToSend.setText("");
         //System.out.println("Message: " + message);
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url ="http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName="+roomName+"&roomOwner="+roomOwner;
+        String url = "http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -235,14 +227,15 @@ public class Rooms extends Fragment {
                 System.out.println("That didn't work!");
             }
 
-        }){
+        }) {
             @Override
             public String getBodyContentType() {
                 return "application/json";
             }
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String,String>();
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("Content-Type", " application/json");
                 return params;
             }
@@ -250,5 +243,6 @@ public class Rooms extends Fragment {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
-
 }
+
+
