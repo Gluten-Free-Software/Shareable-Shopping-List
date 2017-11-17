@@ -1,15 +1,19 @@
 package com.glutenfreesoftware.shareable_shopping;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.net.URL;
@@ -61,6 +65,45 @@ public class ShoppingLists extends Fragment {
                                              }
                                          }
         );
+        shareRoomBtn.setOnClickListener(new View.OnClickListener() {
+
+            String addedUser = "";
+
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Share");
+
+                // Set up the input
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addedUser = input.getText().toString();
+
+                        System.out.println("user:" + addedUser);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+                //Insert code for adding to server from server
+
+            }
+
+        });
 
         username = getArguments().getString("username");
         room = getArguments().getString("room");
