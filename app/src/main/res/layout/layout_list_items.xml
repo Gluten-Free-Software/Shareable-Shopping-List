@@ -20,6 +20,12 @@
         android:onClick="deleteRoom"
         android:text="Delete list" />
 
+    <Button
+        android:id="@+id/add_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add item" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rooms_recyclerview"
         android:scrollbars="vertical"

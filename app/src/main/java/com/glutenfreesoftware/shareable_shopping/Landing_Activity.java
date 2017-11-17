@@ -3,6 +3,7 @@ package com.glutenfreesoftware.shareable_shopping;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,8 +26,8 @@ public class Landing_Activity extends AppCompatActivity
     private RecyclerView RecyclerView;
     private RecyclerView.Adapter Adapter;
     private RecyclerView.LayoutManager LayoutManager;
-    private String username = "TEST";
-    private String password = "TEST";
+    private String username = "";
+    private String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,23 @@ public class Landing_Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Login
-        String username = "Kristian";
+        Intent variables = getIntent();
+        Bundle variableBundle = variables.getExtras();
+        username = variableBundle.getString("username");
+        //System.out.println(username + " *****************!!!!!!!!*****************");
+
+        // Set default:
+        Fragment fragment = null;
+        fragment = new Rooms();
+        Bundle bundle = new Bundle();
+        bundle.putString("username", this.username);
+        //bundle.putString("password", this.password);
+        fragment.setArguments(bundle);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, fragment);
+        transaction.commit();
+
 
 
 

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Add room" />
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rooms_recyclerview"
         android:scrollbars="vertical"

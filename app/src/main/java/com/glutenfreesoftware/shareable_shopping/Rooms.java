@@ -36,7 +36,7 @@ public class Rooms extends Fragment {
 
         username = getArguments().getString("username");
         //password = getArguments().getString("password");
-        System.out.println(username);
+        //System.out.println("**************************************************************Username = " + username);
 
         Button deleteRoomBtn = (Button) view.findViewById(R.id.add_room);
         deleteRoomBtn.setOnClickListener( new View.OnClickListener(){
@@ -67,13 +67,13 @@ public class Rooms extends Fragment {
                         System.out.println("rooms is empty");
                     }
                     for(RoomObj r: rooms){
-                        System.out.println(r.getRoomName() + " " + r.getRoomOwner());
+                        //System.out.println(r.getRoomName() + " " + r.getRoomOwner());
                         input.add(r);
                     }
-                    mAdapter = new RoomAdapter("Kristian", input);
+                    mAdapter = new RoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms"));
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner="+username));
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -54,9 +54,19 @@ public class ListItems extends Fragment {
                                               }
                                           }
         );
+        Button addItemBtn = (Button) view.findViewById(R.id.add_item);
+        addItemBtn.setOnClickListener( new View.OnClickListener(){
+                                             @Override
+                                             public void onClick(View v){
+                                                 //Insert code for adding to server from server
+                                                 System.out.println("Item added");
+                                             }
+                                         }
+        );
 
         username = getArguments().getString("username");
         room = getArguments().getString("list");
+        getActivity().setTitle(room);
         System.out.println("ListItem: " + username + " " + room);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
@@ -108,6 +118,6 @@ public class ListItems extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("List Items");
+        //getActivity().setTitle("List Items");
     }
 }

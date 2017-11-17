@@ -52,9 +52,19 @@ public class ShoppingLists extends Fragment {
                                               }
                                           }
         );
+        Button addListBtn = (Button) view.findViewById(R.id.add_list);
+        addListBtn.setOnClickListener( new View.OnClickListener(){
+                                             @Override
+                                             public void onClick(View v){
+                                                 //Insert code for adding to server from server
+                                                 System.out.println("Added");
+                                             }
+                                         }
+        );
 
         username = getArguments().getString("username");
         room = getArguments().getString("room");
+        getActivity().setTitle(room);
         System.out.println("Shopping list: " + username + " " + room);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
@@ -106,7 +116,7 @@ public class ShoppingLists extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Shopping Lists");
+        //getActivity().setTitle("Shopping Lists");
     }
 
 }

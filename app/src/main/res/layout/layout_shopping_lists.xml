@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
 
+
     <Button
         android:id="@+id/share_room"
         android:layout_width="match_parent"
@@ -17,8 +18,15 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="deleteRoom"
         android:text="Delete room" />
+
+    <Button
+        android:id="@+id/add_list"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add list" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rooms_recyclerview"
