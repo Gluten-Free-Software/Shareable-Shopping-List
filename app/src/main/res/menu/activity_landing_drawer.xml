@@ -3,20 +3,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/home"
-            android:title="Home" />
-        <item
             android:id="@+id/rooms"
             android:title="Rooms" />
         <item
-            android:id="@+id/shopping_lists"
-            android:title="Shopping Lists" />
+            android:id="@+id/shared_rooms"
+            android:title="Shared Rooms" />
         <item
-            android:id="@+id/stored_lists"
-            android:title="Stored lists" />
-        <item
-            android:id="@+id/shared_with_me"
-            android:title="Shared with me" />
+            android:id="@+id/shared_lists"
+            android:title="Shared Lists" />
         <item
             android:id="@+id/gps"
             android:title="GPS" />

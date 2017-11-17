@@ -132,37 +132,6 @@ public class Rooms extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         getRoomsMethod();
-        /*
-        final List<RoomObj> input = new ArrayList<>();
-        try{
-            new getRooms(new getRooms.OnPostExecute() {
-                @Override
-                public void onPostExecute(List<RoomObj> rooms) {
-                    if(rooms.isEmpty()){
-                        System.out.println("rooms is empty");
-                    }
-                    for(RoomObj r: rooms){
-                        //System.out.println(r.getRoomName() + " " + r.getRoomOwner());
-                        input.add(r);
-                    }
-                    mAdapter = new RoomAdapter(username, input);
-                    recyclerView.setAdapter(mAdapter);
-                }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner="+username));
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        */
-
-
-
-                //for (int i = 0; i < 100; i++) {
-                //    input.add("Test" + i);
-                //}// define an adapter
-                //mAdapter = new MyAdapter(input);
-                //recyclerView.setAdapter(mAdapter);
-
-
          return view;
     }
 
