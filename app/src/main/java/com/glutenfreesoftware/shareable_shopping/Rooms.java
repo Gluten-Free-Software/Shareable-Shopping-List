@@ -71,6 +71,15 @@ public class Rooms extends Fragment {
 
             @Override
             public void onClick(final View v) {
+        Button addRoomBtn = (Button) view.findViewById(R.id.add_room);
+
+
+        addRoomBtn.setOnClickListener(new View.OnClickListener() {
+
+            String addedRoom = "";
+
+            @Override
+            public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Add room");
@@ -96,6 +105,9 @@ public class Rooms extends Fragment {
                             }
                         }, 3000);
                         System.out.println("user:" + roomNamePosted);
+                        addedRoom = input.getText().toString();
+
+                        System.out.println(addedRoom);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

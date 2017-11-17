@@ -41,33 +41,80 @@ public class ListItems extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_list_items, container, false);
 
-        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_list);
-        deleteRoomBtn.setOnClickListener(new View.OnClickListener() {
-                                             @Override
-                                             public void onClick(View v) {
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("List deleted");
-                                             }
-                                         }
-        );
-        Button shareListBtn = (Button) view.findViewById(R.id.share_list);
-        shareListBtn.setOnClickListener( new View.OnClickListener(){
-                                              @Override
-                                              public void onClick(View v){
-                                                  //Insert code for adding to server from server
-                                                  System.out.println("Shared list");
-                                              }
-                                          }
-        );
+        Button deleteListBtn = (Button) view.findViewById(R.id.delete_list);
+        deleteListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Are you sure you wish to delete room?");
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        /*
+                        Insert code for deletion of room here
+                         */
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+                //Insert code for adding to server from server
+
+            }
+
+        });
         Button addItemBtn = (Button) view.findViewById(R.id.add_item);
-        addItemBtn.setOnClickListener( new View.OnClickListener(){
-                                             @Override
-                                             public void onClick(View v){
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("Item added");
-                                             }
-                                         }
-        );
+        addItemBtn.setOnClickListener(new View.OnClickListener() {
+
+            String addedItem = "";
+
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Add item");
+
+                // Set up the input
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addedItem = input.getText().toString();
+
+                        System.out.println(addedItem);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+                //Insert code for adding to server from server
+
+            }
+
+        });
+        Button shareListBtn = (Button) view.findViewById(R.id.share_list);
         shareListBtn.setOnClickListener(new View.OnClickListener() {
 
             String addedUser = "";
