@@ -38,33 +38,8 @@ public class ShoppingLists extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
 
-        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
-        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    //Insert code for deleting from server
-                    System.out.println("Deleted");
-                }
-            }
-        );
+
         Button shareRoomBtn = (Button) view.findViewById(R.id.share_room);
-        shareRoomBtn.setOnClickListener( new View.OnClickListener(){
-                                              @Override
-                                              public void onClick(View v){
-                                                  //Insert code for adding to server from server
-                                                  System.out.println("Shared");
-                                              }
-                                          }
-        );
-        Button addListBtn = (Button) view.findViewById(R.id.add_list);
-        addListBtn.setOnClickListener( new View.OnClickListener(){
-                                             @Override
-                                             public void onClick(View v){
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("Added");
-                                             }
-                                         }
-        );
         shareRoomBtn.setOnClickListener(new View.OnClickListener() {
 
             String addedUser = "";
@@ -105,6 +80,27 @@ public class ShoppingLists extends Fragment {
 
         });
 
+        Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
+        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    //Insert code for deleting from server
+                    System.out.println("Deleted");
+                }
+            }
+        );
+
+        Button addListBtn = (Button) view.findViewById(R.id.add_list);
+        addListBtn.setOnClickListener( new View.OnClickListener(){
+                                             @Override
+                                             public void onClick(View v){
+                                                 //Insert code for adding to server from server
+                                                 System.out.println("Added");
+                                             }
+                                         }
+        );
+
+
         username = getArguments().getString("username");
         room = getArguments().getString("room");
         getActivity().setTitle(room);
@@ -120,6 +116,8 @@ public class ShoppingLists extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+        getListsMethod();
+        /*
         final List<ListObj> input = new ArrayList<>();
         try{
             new getLists(new getLists.OnPostExecute() {
@@ -139,6 +137,7 @@ public class ShoppingLists extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
+        */
         //"http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom=Oppskrifter&listOwner=Kristian"
         //
         //http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom=Oppskrifter&listOwner=Kristian
@@ -160,6 +159,30 @@ public class ShoppingLists extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //getActivity().setTitle("Shopping Lists");
+    }
+
+    public void getListsMethod(){
+
+        final List<ListObj> input = new ArrayList<>();
+        try{
+            new getLists(new getLists.OnPostExecute() {
+                @Override
+                public void onPostExecute(List<ListObj> lists) {
+                    if(lists.isEmpty()){
+                        System.out.println("list is empty...hello?");
+                    }
+                    for(ListObj l: lists){
+                        System.out.println(l.getListRoom() + " " + l.getListName() + " " + l.getListOwner());
+                        input.add(l);
+                    }
+                    mAdapter = new ListAdapter("Kristian", input);
+                    recyclerView.setAdapter(mAdapter);
+                }
+            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
