@@ -39,32 +39,81 @@ public class ShoppingLists extends Fragment {
         View view = inflater.inflate(R.layout.layout_shopping_lists, container, false);
 
         Button deleteRoomBtn = (Button) view.findViewById(R.id.delete_room);
-        deleteRoomBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    //Insert code for deleting from server
-                    System.out.println("Deleted");
-                }
+        deleteRoomBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Are you sure you wish to delete room?");
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        /*
+                        Insert code for deletion of room here
+                         */
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+                //Insert code for adding to server from server
+
             }
-        );
-        Button shareRoomBtn = (Button) view.findViewById(R.id.share_room);
-        shareRoomBtn.setOnClickListener( new View.OnClickListener(){
-                                              @Override
-                                              public void onClick(View v){
-                                                  //Insert code for adding to server from server
-                                                  System.out.println("Shared");
-                                              }
-                                          }
-        );
+
+        });
         Button addListBtn = (Button) view.findViewById(R.id.add_list);
-        addListBtn.setOnClickListener( new View.OnClickListener(){
-                                             @Override
-                                             public void onClick(View v){
-                                                 //Insert code for adding to server from server
-                                                 System.out.println("Added");
-                                             }
-                                         }
-        );
+
+        addListBtn.setOnClickListener(new View.OnClickListener() {
+
+            String addedList = "";
+
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Add list");
+
+                // Set up the input
+                final EditText input = new EditText(getActivity());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addedList = input.getText().toString();
+
+                        System.out.println("user:" + addedList);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+                //Insert code for adding to server from server
+
+            }
+
+        });
+
+        Button shareRoomBtn = (Button) view.findViewById(R.id.share_room);
         shareRoomBtn.setOnClickListener(new View.OnClickListener() {
 
             String addedUser = "";
