@@ -6,19 +6,35 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/share_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Share list" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/delete_list"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="deleteRoom"
-        android:text="Delete list" />
+        <Button
+            android:id="@+id/delete_list"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="deleteRoom"
+            android:text="Delete list" />
+
+        <Button
+            android:id="@+id/add_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add item" />
+
+        <Button
+            android:id="@+id/share_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Share list" />
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rooms_recyclerview"

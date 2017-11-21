@@ -3,6 +3,7 @@ package com.glutenfreesoftware.shareable_shopping;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,8 +26,8 @@ public class Landing_Activity extends AppCompatActivity
     private RecyclerView RecyclerView;
     private RecyclerView.Adapter Adapter;
     private RecyclerView.LayoutManager LayoutManager;
-    private String username = "TEST";
-    private String password = "TEST";
+    private String username = "";
+    private String password = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +53,21 @@ public class Landing_Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Login
-        String username = "Kristian";
+        Intent variables = getIntent();
+        Bundle variableBundle = variables.getExtras();
+        username = variableBundle.getString("username");
 
+        // Set default:
+        Fragment fragment = null;
+        fragment = new Rooms();
+        Bundle bundle = new Bundle();
+        bundle.putString("username", this.username);
+        //bundle.putString("password", this.password);
+        fragment.setArguments(bundle);
 
-
-
-
-
-
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_main, fragment);
+        transaction.commit();
     }
 
     @Override
@@ -136,11 +143,9 @@ public class Landing_Activity extends AppCompatActivity
         if (id == R.id.rooms) {
             // Handle the camera action
             fragment = new Rooms();
-        } else if (id == R.id.shopping_lists) {
+        } else if (id == R.id.shared_rooms) {
             fragment = new ShoppingLists();
-        } else if (id == R.id.stored_lists) {
-            fragment = new StoredLists();
-        } else if (id == R.id.shared_with_me) {
+        } else if (id == R.id.shared_lists) {
             fragment = new SharedLists();
         } else if (id == R.id.gps) {
             fragment = new GPS();
@@ -148,8 +153,6 @@ public class Landing_Activity extends AppCompatActivity
             //Egen settings activity
         } else if (id == R.id.logout) {
             //Logg ut
-        } else if (id == R.id.home) {
-            fragment = new Home();
         }
 
         if (fragment != null){

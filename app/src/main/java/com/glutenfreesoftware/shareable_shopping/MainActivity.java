@@ -77,8 +77,16 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(loginIntent);
                             }
                         }
+<<<<<<< HEAD
                     }
                 }).execute(new URL(testAuth));
+=======
+                    } //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api" +
+                        "/users/getUser?username=" + username + "&password=" + password)); //(new
+                // url.
+                // ("http://158.38.92.103:8080/pstore/api/store/images/"));
+>>>>>>> a528eabb8c125717ecdec346d68fc388f2a27132
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
