@@ -50,7 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         final String username = usernameInput;
         final String password = passwordInput;
-
+        
+        String getUserURL = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api" +
+                "/users/getUser?username=" + username + "&password=" + password;
+        String testAuth = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api";
+        
         if(!username.equals("") && !password.equals("")){
             //System.out.println("It works! OMG");
             try {
@@ -73,11 +77,8 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(loginIntent);
                             }
                         }
-                    } //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                }).execute(new URL("http://158.38.72.156:8080/Shareable-Shopping-List-REST/api" +
-                        "/users/getUser?username=" + username + "&password=" + password)); //(new
-                // url.
-                // ("http://158.38.92.103:8080/pstore/api/store/images/"));
+                    }
+                }).execute(new URL(testAuth));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
