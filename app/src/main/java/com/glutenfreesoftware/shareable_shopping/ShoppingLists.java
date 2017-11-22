@@ -59,7 +59,7 @@ public class ShoppingLists extends Fragment {
             public void onClick(final View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Are you sure you wish to delete room?");
+                builder.setTitle("Are you sure you wish to delete folder?");
                 // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
@@ -72,7 +72,8 @@ public class ShoppingLists extends Fragment {
                             @Override
                             public void run() {
                                 // Do something after 3s = 3000ms
-                                getListsMethod();
+                                //getListsMethod();
+                                System.out.println("Folder have been deleted!");
                             }
                         }, 3000);
 
@@ -262,7 +263,7 @@ public class ShoppingLists extends Fragment {
                     mAdapter = new ListAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+            }).execute(new URL("http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/lists/getLists?listRoom="+room+"&listOwner="+username));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -271,7 +272,7 @@ public class ShoppingLists extends Fragment {
 
     public void deleteRoom(View v, String roomName, String roomOwner) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/removeRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
+        String url = "http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/rooms/removeRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -306,7 +307,7 @@ public class ShoppingLists extends Fragment {
 
     public void addList(View v, String listRoom, String listName, String listOwner) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/lists/addList?listRoom=" + listRoom + "&listName=" + listName + "&listOwner=" + listOwner;
+        String url = "http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/lists/addList?listRoom=" + listRoom + "&listName=" + listName + "&listOwner=" + listOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -346,7 +347,7 @@ public class ShoppingLists extends Fragment {
         //System.out.println("Message: " + message);
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
+        String url = "http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

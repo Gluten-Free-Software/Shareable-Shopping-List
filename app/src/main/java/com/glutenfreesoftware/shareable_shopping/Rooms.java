@@ -77,7 +77,7 @@ public class Rooms extends Fragment {
                     @Override
                     public void onClick(final View v) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setTitle("Add room");
+                        builder.setTitle("Add folder");
 
                         // Set up the input
                         final EditText input = new EditText(getActivity());
@@ -141,7 +141,7 @@ public class Rooms extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Rooms");
+        getActivity().setTitle("Folders");
     }
 
     public void deleteRoom(View view) {
@@ -166,7 +166,7 @@ public class Rooms extends Fragment {
                     mAdapter = new RoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner=" + username));
+            }).execute(new URL("http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner=" + username));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,7 +180,7 @@ public class Rooms extends Fragment {
         //System.out.println("Message: " + message);
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
+        String url = "http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
