@@ -11,6 +11,9 @@ import android.widget.EditText;
 
 import com.glutenfreesoftware.shareable_shopping.dialog.LoginFailedDialogFragment;
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -49,12 +52,16 @@ public class MainActivity extends AppCompatActivity {
     public void checkLogin(View view, String usernameInput, String passwordInput){
 
         final String username = usernameInput;
-        final String password = passwordInput;
-        
-        String getUserURL = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api" +
+        //final String password = passwordInput;
+        String password = new String(Hex.encodeHex(DigestUtils.sha(passwordInput)));
+
+        String getUserURL = "http://158.38.193.197:8080/Shareable-Shopping-List-REST/api" +
                 "/users/getUser?username=" + username + "&password=" + password;
-        String testAuth = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api";
-        
+        //String testAuth = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api";
+
+
+
+
         if(!username.equals("") && !password.equals("")){
             //System.out.println("It works! OMG");
             try {

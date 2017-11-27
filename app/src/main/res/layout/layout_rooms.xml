@@ -10,7 +10,7 @@
         android:id="@+id/add_room"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add room" />
+        android:text="Add Folder" />
 
 
     <android.support.v7.widget.RecyclerView

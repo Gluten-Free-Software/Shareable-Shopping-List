@@ -19,7 +19,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:text="Delete room" />
+            android:text="Delete" />
 
         <Button
             android:id="@+id/add_list"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Share room" />
+            android:text="Share" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

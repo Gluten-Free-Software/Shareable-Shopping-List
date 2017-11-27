@@ -144,7 +144,7 @@ public class Landing_Activity extends AppCompatActivity
             // Handle the camera action
             fragment = new Rooms();
         } else if (id == R.id.shared_rooms) {
-            fragment = new ShoppingLists();
+            fragment = new SharedRooms();
         } else if (id == R.id.shared_lists) {
             fragment = new SharedLists();
         } else if (id == R.id.gps) {
@@ -153,6 +153,10 @@ public class Landing_Activity extends AppCompatActivity
             //Egen settings activity
         } else if (id == R.id.logout) {
             //Logg ut
+            Intent intent = new Intent(Landing_Activity.this , MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
         }
 
         if (fragment != null){

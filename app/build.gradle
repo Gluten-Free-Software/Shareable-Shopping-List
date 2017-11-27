@@ -31,4 +31,11 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.0.+'
     compile 'com.android.volley:volley:1.0.0'
     testCompile 'junit:junit:4.12'
+
+    // https://mvnrepository.com
+    // /artifact/org.mindrot/jbcrypt
+    compile group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
+    // https://mvnrepository.com/artifact/commons-codec/commons-codec
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
+
 }

@@ -47,12 +47,12 @@ public class SharedRooms extends Fragment {
         final View view = inflater.inflate(R.layout.layout_shared_rooms, container, false);
 
         username = getArguments().getString("username");
-        recyclerView = (RecyclerView) view.findViewById(R.id.rooms_recyclerview);
+        recyclerView = (RecyclerView) view.findViewById(R.id.sh_rooms_recyclerview);
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        getRoomsMethod();
+        //getSharedRoomsMethod();
         return view;
     }
 
@@ -62,14 +62,14 @@ public class SharedRooms extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getActivity().setTitle("Shared Rooms");
+        getActivity().setTitle("Shared Folders");
     }
 
     public void deleteRoom(View view) {
 
     }
 
-    public void getRoomsMethod() {
+    public void getSharedRoomsMethod() {
         System.out.println("getRoomsMethod");
 
         final List<RoomObj> input = new ArrayList<>();
@@ -87,7 +87,7 @@ public class SharedRooms extends Fragment {
                     mAdapter = new RoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://158.38.193.60:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner=" + username));
+            }).execute(new URL("http://158.38.193.197:8080/Shareable-Shopping-List-REST/api/rooms/getRooms?roomOwner=" + username));
         } catch (Exception e) {
             e.printStackTrace();
         }
