@@ -167,7 +167,7 @@ public class Rooms extends Fragment {
                     mAdapter = new RoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://192.168.1.43:8080/ssl-fk-sharing/api/rooms/getUserRooms?roomOwner=" + username));
+            }).execute(new URL("http://158.38.193.197:8080/ssl-fk-sharing/api/rooms/getUserRooms?roomOwner=" + username));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -181,7 +181,7 @@ public class Rooms extends Fragment {
         //System.out.println("Message: " + message);
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/rooms/addRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

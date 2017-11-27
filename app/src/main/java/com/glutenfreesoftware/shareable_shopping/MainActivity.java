@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         //final String password = passwordInput;
         String password = new String(Hex.encodeHex(DigestUtils.sha(passwordInput)));
 
-        String getUserURL = "http://192.168.1.43:8080/ssl-fk-sharing/api" +
+        String getUserURL = "http://158.38.193.197:8080/ssl-fk-sharing/api" +
                 "/users/getUser?username=" + username + "&password=" + password;
         //String testAuth = "http://158.38.72.37:8080/Shareable-Shopping-List-REST/api";
 

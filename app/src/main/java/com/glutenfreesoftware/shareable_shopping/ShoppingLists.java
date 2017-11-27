@@ -268,7 +268,7 @@ public class ShoppingLists extends Fragment {
                     mAdapter = new ListAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://192.168.1.43:8080/ssl-fk-sharing/api/lists/getLists?listRoom="+room+"&listOwner="+username));
+            }).execute(new URL("http://158.38.193.197:8080/ssl-fk-sharing/api/lists/getLists?listRoom="+room+"&listOwner="+username));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -277,7 +277,7 @@ public class ShoppingLists extends Fragment {
 
     public void deleteRoom(View v, String roomName, String roomOwner) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/rooms/removeRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/rooms/removeRoom?roomName=" + roomName + "&roomOwner=" + roomOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -312,7 +312,7 @@ public class ShoppingLists extends Fragment {
 
     public void addList(View v, String listRoom, String listName, String listOwner) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/lists/addList?listRoom=" + listRoom + "&listName=" + listName + "&listOwner=" + listOwner;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/lists/addList?listRoom=" + listRoom + "&listName=" + listName + "&listOwner=" + listOwner;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -353,7 +353,7 @@ public class ShoppingLists extends Fragment {
         //System.out.println(roomName + " " + roomOwner + " " + sharedWith);
 
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/rooms/shareRoom?sharedRoomName=" + roomName + "&sharedRoomOwner=" + roomOwner + "&sharedWith=" + sharedWith;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/rooms/shareRoom?sharedRoomName=" + roomName + "&sharedRoomOwner=" + roomOwner + "&sharedWith=" + sharedWith;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

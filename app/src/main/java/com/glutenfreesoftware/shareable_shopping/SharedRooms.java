@@ -88,7 +88,7 @@ public class SharedRooms extends Fragment {
                     mAdapter = new SharedRoomAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://192.168.1.43:8080/ssl-fk-sharing/api/rooms/sharedRooms?sharedWith=" + username));
+            }).execute(new URL("http://158.38.193.197:8080/ssl-fk-sharing/api/rooms/sharedRooms?sharedWith=" + username));
         } catch (Exception e) {
             e.printStackTrace();
         }

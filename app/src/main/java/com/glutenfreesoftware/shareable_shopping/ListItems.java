@@ -249,7 +249,7 @@ public class ListItems extends Fragment {
                     mAdapter = new ListItemAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://192.168.1.43:8080/ssl-fk-sharing/api/lists/getListItems?listID="+listID));
+            }).execute(new URL("http://158.38.193.197:8080/ssl-fk-sharing/api/lists/getListItems?listID="+listID));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -257,7 +257,7 @@ public class ListItems extends Fragment {
 
     public void deleteList(View v, int listID, String listOwner){
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/lists/removeList?listOwner=" + listOwner + "&listID=" + listID;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/lists/removeList?listOwner=" + listOwner + "&listID=" + listID;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -292,7 +292,7 @@ public class ListItems extends Fragment {
 
     public void addListItem(View v, int listID , String listItemName) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/lists/addListItem?listItemName=" + listItemName + "&listID=" + listID;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/lists/addListItem?listItemName=" + listItemName + "&listID=" + listID;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -327,7 +327,7 @@ public class ListItems extends Fragment {
 
     public void shareList(View v, int listID , String sharedWith) {
         RequestQueue queue = Volley.newRequestQueue(v.getContext());
-        String url = "http://192.168.1.43:8080/ssl-fk-sharing/api/lists/shareList?listID=" + listID + "&sharedWith=" + sharedWith;
+        String url = "http://158.38.193.197:8080/ssl-fk-sharing/api/lists/shareList?listID=" + listID + "&sharedWith=" + sharedWith;
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

@@ -77,7 +77,7 @@ public class SharedLists extends Fragment {
                     mAdapter = new SharedListAdapter(username, input);
                     recyclerView.setAdapter(mAdapter);
                 }
-            }).execute(new URL("http://192.168.1.43:8080/ssl-fk-sharing/api/lists/sharedLists?sharedWith=" + username));
+            }).execute(new URL("http://158.38.193.197:8080/ssl-fk-sharing/api/lists/sharedLists?sharedWith=" + username));
         } catch (Exception e) {
             e.printStackTrace();
         }
