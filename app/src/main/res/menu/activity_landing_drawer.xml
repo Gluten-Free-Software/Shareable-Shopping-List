@@ -4,10 +4,10 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/rooms"
-            android:title="Rooms" />
+            android:title="Folders" />
         <item
             android:id="@+id/shared_rooms"
-            android:title="Shared Rooms" />
+            android:title="Shared Folders" />
         <item
             android:id="@+id/shared_lists"
             android:title="Shared Lists" />
